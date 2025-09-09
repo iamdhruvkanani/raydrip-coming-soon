@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ray Drip - Coming Soon</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;600&display=swap');
+
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #121212;
+    color: #e6c577;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
+
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    background: #121212;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeSlideIn 1.6s ease forwards;
+    animation-delay: 0.3s;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h1 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 4.5rem;
+    margin: 0 0 12px;
+    letter-spacing: 6px;
+    text-shadow: 0 0 15px #e6c577cc;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 1.4rem;
+    max-width: 380px;
+    margin: 0 0 40px;
+    color: #d6b858cc;
+  }
+
+  .countdown {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    user-select: none;
+    flex-wrap: nowrap;
+  }
+  .countdown div {
+    background: #292929bb;
+    border-radius: 14px;
+    padding: 28px 36px;
+    min-width: 95px;
+    text-align: center;
+    box-shadow: 0 6px 18px #b69a3d55;
+    transition: background-color 0.3s ease;
+    cursor: default;
+    flex-shrink: 0;
+  }
+  .countdown div:hover {
+    background-color: #3d3d3dbb;
+  }
+  .number {
+    font-size: 3.6rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 2px;
+    font-feature-settings: 'tnum';
+    color: #fcefa1;
+    transition: transform 0.3s ease;
+  }
+  .number.animate {
+    transform: scale(1.2);
+  }
+  .label {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b09f3fbb;
+  }
+
+  /* Instagram section */
+  .instagram-promo {
+    margin-top: 48px;
+    background: #292929cc;
+    padding: 24px 32px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px #b69a3d66;
+    max-width: 360px;
+  }
+  .instagram-promo p {
+    font-size: 1.3rem;
+    color: #fcefa1;
+    margin-bottom: 20px;
+  }
+  .instagram-btn {
+    background: #e4405f;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px #e4405fcc;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .instagram-btn:hover {
+    background: #c32b4a;
+    box-shadow: 0 6px 16px #c32b4acc;
+  }
+  .instagram-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 14px;
+    width: 100%;
+    color: #b09f3f99;
+    text-align: center;
+    font-size: 0.95rem;
+    z-index: 10;
+    user-select: none;
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 3.2rem;
+      letter-spacing: 3px;
+    }
+    p {
+      font-size: 1.1rem;
+      max-width: 280px;
+    }
+    .countdown {
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .countdown div {
+      min-width: 60px;
+      padding: 10px 15px;
+      flex-grow: 1;
+      text-align: center;
+    }
+    .number {
+      font-size: 2rem;
+    }
+    .label {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+    .instagram-promo {
+      max-width: 100%;
+      padding: 20px;
+    }
+    .instagram-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 14px 0;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .countdown {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .countdown div {
+      width: 100%;
+      max-width: 120px;
+      margin: 0 auto;
+    }
+  }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<div class="container" role="main" aria-label="Coming Soon Content">
+  <h1>Ray Drip</h1>
+  <p>Our exclusive ethnic wear collection is arriving soon. Stay inspired.</p>
+
+  <div class="countdown" aria-label="Countdown timer">
+    <div><span class="number" id="days">0</span><div class="label">Days</div></div>
+    <div><span class="number" id="hours">00</span><div class="label">Hours</div></div>
+    <div><span class="number" id="minutes">00</span><div class="label">Minutes</div></div>
+    <div><span class="number" id="seconds">00</span><div class="label">Seconds</div></div>
+  </div>
+
+  <div class="instagram-promo" aria-label="Place Order on Instagram">
+    <p>You can place your orders now using our Instagram store.</p>
+    <a href="https://instagram.com/raydrip" target="_blank" rel="noopener" class="instagram-btn" aria-label="Visit Ray Drip Instagram Store">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3a5.75 5.75 0 110 11.5 5.75 5.75 0 010-11.5zm0 1.5a4.25 4.25 0 100 8.5 4.25 4.25 0 000-8.5zm4.58-1.72a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/>
+      </svg>
+      Order on Instagram
+    </a>
+  </div>
+</div>
+
+<footer>© 2025 Ray Drip. All rights reserved.</footer>
+
+<script>
+  // Countdown logic with number pop animation
+  const launchDate = new Date('2025-12-01T00:00:00').getTime();
+
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+
+  function animateNumber(element) {
+    element.classList.add('animate');
+    setTimeout(() => element.classList.remove('animate'), 350);
+  }
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = launchDate - now;
+
+    if (distance < 0) {
+      document.querySelector('.countdown').innerHTML = '<p>We are live! Visit the full website soon.</p>';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    if(Number(daysEl.textContent) !== days) {
+      daysEl.textContent = days;
+      animateNumber(daysEl);
+    }
+    if(Number(hoursEl.textContent) !== hours) {
+      hoursEl.textContent = String(hours).padStart(2,'0');
+      animateNumber(hoursEl);
+    }
+    if(Number(minutesEl.textContent) !== minutes) {
+      minutesEl.textContent = String(minutes).padStart(2,'0');
+      animateNumber(minutesEl);
+    }
+    if(Number(secondsEl.textContent) !== seconds) {
+      secondsEl.textContent = String(seconds).padStart(2,'0');
+      animateNumber(secondsEl);
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Particle background softly glowing dots
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function resizeCanvas() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+    createParticles();
+  }
+
+  function Particle() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.radius = Math.random() * 1.5 + 1.0;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.alpha = Math.random() * 0.35 + 0.1;
+
+    this.draw = function() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+      ctx.fillStyle = `rgba(230, 197, 119, ${this.alpha})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = 'rgba(230, 197, 119, 0.8)';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    };
+
+    this.update = function() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if(this.x < 0 || this.x > W) this.speedX = -this.speedX;
+      if(this.y < 0 || this.y > H) this.speedY = -this.speedY;
+    };
+  }
+
+  function createParticles() {
+    particles = [];
+    for(let i=0; i<100; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    for(let p of particles) {
+      p.update();
+      p.draw();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  animate();
+</script>
+</body>
+</html>
